@@ -1,0 +1,8 @@
+{
+  "name": "grunt-bower-wordpress",
+  "dependencies": {
+    "bootstrap": "3.2.*",
+    "font-awesome": "4.1.*",
+    "jquery": "1.11.*"
+  }
+}

@@ -2,6 +2,7 @@ module.exports = (grunt) ->
 
   grunt.initConfig
 
+    # Copy Font Awesome files to /fonts directory
     copy:
       fonts:
         files: [
@@ -11,6 +12,7 @@ module.exports = (grunt) ->
           dest: 'fonts'
         ]
 
+    # Concatenate all JavaScript files in the /js directory
     concat:
       js:
         options:
@@ -21,6 +23,7 @@ module.exports = (grunt) ->
         ]
         dest: 'prod.js'
 
+    # Minify the concatenated JavaScript output
     uglify:
       options:
         mangle: false
@@ -28,6 +31,7 @@ module.exports = (grunt) ->
         files:
           'prod.js': ['prod.js']
 
+    # Compile LESS stylesheet into /style.css
     less:
       style:
         options:
@@ -36,6 +40,7 @@ module.exports = (grunt) ->
         files:
           "style.css": "less/style.less"
 
+    # During developement, watch files and recompile/reload
     watch:
       php:
         files: ['**/*.php']
@@ -53,8 +58,7 @@ module.exports = (grunt) ->
         options:
           livereload: true
 
-
-  # Build project
+  # Build theme
   grunt.registerTask 'build', [
     'copy'
     'concat:js'
@@ -62,12 +66,11 @@ module.exports = (grunt) ->
     'less:style'
   ]
 
-  # Start dev environments using nodemon
+  # Build theme and start watching files (for development)
   grunt.registerTask 'dev', [
     'build'
     'watch'
   ]
-
 
   # Load grunt modules
   grunt.loadNpmTasks('grunt-contrib-concat')
